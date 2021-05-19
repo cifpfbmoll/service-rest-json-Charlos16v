@@ -1,17 +1,10 @@
 package edu.pingpong.rest.json;
 
-import org.jboss.logging.annotations.Pos;
 
 import javax.inject.Inject;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.Set;
 
 @Path("/fruits")
 public class FruitResource {
@@ -23,13 +16,24 @@ public class FruitResource {
     }
 
     @GET
+    @Produces(MediaType.APPLICATION_JSON)
     public Response fruitsData() {
         return Response.ok(service.getData()).build();
     }
-    /*
+
     @POST
-    public Set<Fruit> add(Fruit fruit) {
-        fruitSet.add(fruit);
-        return fruitSet;
-    }*/
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response addData(Fruit fruit) {
+        service.addFruit(fruit);
+        return Response.accepted(fruit).build();
+    }
+
+    @DELETE
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response deleteData(Fruit fruit) {
+        service.removeFruit(fruit.getName());
+        return Response.accepted(fruit).build();
+    }
 }
