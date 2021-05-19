@@ -24,7 +24,7 @@ public class FruitRepository {
         fruitsData.add(new Fruit("Orange", "Summer fruit"));
     }
 
-    public Set<Fruit> returnData() {
+    public Set<Fruit> getData() {
         return this.fruitsData;
     }
 
@@ -34,6 +34,10 @@ public class FruitRepository {
 
     public Optional<Fruit> getFruit(String name) {
         // Optional because it can't always exist, equalsIgnoreCase to check if the string is equals ignoring the case.
-        return returnData().stream().filter(fruit -> fruit.name.equalsIgnoreCase(name)).findFirst();
+        return getData().stream().filter(fruit -> fruit.getName().equalsIgnoreCase(name)).findFirst();
+    }
+
+    public void removeFruit(String name) {
+        getData().removeIf(fruit -> fruit.getName().equalsIgnoreCase(name));
     }
 }
