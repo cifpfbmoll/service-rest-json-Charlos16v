@@ -1,5 +1,8 @@
-package edu.pingpong.rest.json;
+package edu.pingpong.rest.json.resource;
 
+
+import edu.pingpong.rest.json.service.FruitService;
+import edu.pingpong.rest.json.domain.Fruit;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
@@ -18,7 +21,7 @@ public class FruitResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response fruitsData() {
-        return Response.ok(service.getData()).build();
+        return Response.ok(service.getData(), MediaType.APPLICATION_JSON).build();
     }
 
     @POST

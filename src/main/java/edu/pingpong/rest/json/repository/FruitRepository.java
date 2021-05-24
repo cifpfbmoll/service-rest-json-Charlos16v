@@ -1,4 +1,6 @@
-package edu.pingpong.rest.json;
+package edu.pingpong.rest.json.repository;
+
+import edu.pingpong.rest.json.domain.Fruit;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
@@ -39,5 +41,6 @@ public class FruitRepository {
 
     public void removeFruit(String name) {
         getData().removeIf(fruit -> fruit.getName().equalsIgnoreCase(name));
+        //this.fruitsData.remove(getData().stream().filter(fruit -> fruit.getName().equalsIgnoreCase(name)).findFirst());
     }
 }

@@ -1,4 +1,4 @@
-package edu.pingpong.rest.json;
+package edu.pingpong.rest.json.domain;
 
 public class Fruit {
 

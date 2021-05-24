@@ -1,4 +1,7 @@
-package edu.pingpong.rest.json;
+package edu.pingpong.rest.json.service;
+
+import edu.pingpong.rest.json.domain.Fruit;
+import edu.pingpong.rest.json.repository.FruitRepository;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
