@@ -26,11 +26,6 @@ public class FruitRepositoryTest {
         repository.initDB();
     }
 
-    @AfterEach
-    public void teardownDB() {
-        repository.initDB();
-    }
-
     @Test
     public void checkSetupTest() {
         assertEquals(2, repository.getData().size());
