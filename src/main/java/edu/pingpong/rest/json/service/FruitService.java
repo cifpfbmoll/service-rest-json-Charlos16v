@@ -24,7 +24,7 @@ public class FruitService {
     }
 
     public void addFruit(Fruit fruit) {
-        getData().add(fruit);
+        repository.addFruit(fruit);
     }
 
     public Optional<Fruit> getFruit(String name) {
