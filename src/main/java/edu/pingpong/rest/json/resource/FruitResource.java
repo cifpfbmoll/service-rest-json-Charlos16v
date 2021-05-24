@@ -5,7 +5,7 @@ import edu.pingpong.rest.json.service.FruitService;
 import edu.pingpong.rest.json.domain.Fruit;
 
 import javax.inject.Inject;
-import javax.print.attribute.standard.Media;
+import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -21,6 +21,7 @@ public class FruitResource {
     }
 
     @GET
+    @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response fruitsData() {
         return Response.ok(service.getData(), MediaType.APPLICATION_JSON).build();
@@ -29,7 +30,7 @@ public class FruitResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response addData(Fruit fruit) {
+    public Response addData(@Valid Fruit fruit) {
         service.addFruit(fruit);
         return Response.accepted(fruit).build();
     }
@@ -37,7 +38,7 @@ public class FruitResource {
     @DELETE
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response deleteData(Fruit fruit) {
+    public Response deleteData(@Valid Fruit fruit) {
         service.removeFruit(fruit.getName());
         return Response.accepted(fruit).build();
     }
