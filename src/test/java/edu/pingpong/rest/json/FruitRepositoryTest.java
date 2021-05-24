@@ -1,18 +1,15 @@
 package edu.pingpong.rest.json;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import org.assertj.core.api.Assertions;
 import edu.pingpong.rest.json.domain.Fruit;
 import edu.pingpong.rest.json.repository.FruitRepository;
 import io.quarkus.test.junit.QuarkusTest;
-import org.junit.jupiter.api.AfterEach;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javax.inject.Inject;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @QuarkusTest
 public class FruitRepositoryTest {

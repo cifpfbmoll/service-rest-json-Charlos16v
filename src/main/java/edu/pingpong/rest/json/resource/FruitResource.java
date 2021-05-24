@@ -1,8 +1,8 @@
 package edu.pingpong.rest.json.resource;
 
 
-import edu.pingpong.rest.json.service.FruitService;
 import edu.pingpong.rest.json.domain.Fruit;
+import edu.pingpong.rest.json.service.FruitService;
 
 import javax.inject.Inject;
 import javax.validation.Valid;
@@ -14,8 +14,8 @@ import java.util.Optional;
 @Path("/fruits")
 public class FruitResource {
 
-   @Inject
-   FruitService service;
+    @Inject
+    FruitService service;
 
     public FruitResource() {
     }

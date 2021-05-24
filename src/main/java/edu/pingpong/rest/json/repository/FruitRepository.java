@@ -13,7 +13,7 @@ import java.util.Set;
 @ApplicationScoped
 public class FruitRepository {
 
-    private Set<Fruit> fruitsData = Collections.newSetFromMap(Collections.synchronizedMap(new LinkedHashMap<>()));
+    private final Set<Fruit> fruitsData = Collections.newSetFromMap(Collections.synchronizedMap(new LinkedHashMap<>()));
 
     // Empty constructor for the CDI
     public FruitRepository() {

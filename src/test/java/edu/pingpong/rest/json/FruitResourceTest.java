@@ -15,9 +15,9 @@ import javax.ws.rs.core.MediaType;
 import java.util.List;
 import java.util.Map;
 
-import static io.netty.util.internal.SystemPropertyUtil.contains;
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 
 @QuarkusTest
@@ -35,10 +35,10 @@ public class FruitResourceTest {
     public void fruitsDataEndpoint() {
         List<Map<String, Object>> fruits =
                 given()
-                    .contentType(ContentType.JSON)
-                    .when().get("/fruits")
-                    .as(new TypeRef<List<Map<String, Object>>>() {
-                    });
+                        .contentType(ContentType.JSON)
+                        .when().get("/fruits")
+                        .as(new TypeRef<List<Map<String, Object>>>() {
+                        });
 
         Assertions.assertThat(fruits).hasSize(2);
 
@@ -54,11 +54,11 @@ public class FruitResourceTest {
         given()
                 .contentType(ContentType.JSON)
                 .when()
-                    .get("/fruits")
+                .get("/fruits")
                 .then()
-                    .statusCode(200)
+                .statusCode(200)
                 .body("$.size()", is(2),
-                "name", containsInAnyOrder("Strawberry", "Orange"),
+                        "name", containsInAnyOrder("Strawberry", "Orange"),
                         "description", containsInAnyOrder("Winter fruit", "Summer fruit"));
     }
 
@@ -66,26 +66,26 @@ public class FruitResourceTest {
     public void addFruitTest() {
         Fruit fruit = new Fruit("test", "test");
         given()
-                    .body(fruit)
-                    .header("Content-Type", MediaType.APPLICATION_JSON)
+                .body(fruit)
+                .header("Content-Type", MediaType.APPLICATION_JSON)
                 .when()
-                    .post("/fruits")
+                .post("/fruits")
                 .then()
-                    .statusCode(202)
-                    .body("name", equalTo("test"));
+                .statusCode(202)
+                .body("name", equalTo("test"));
     }
 
     @Test
     public void deleteFruitTest() {
         Fruit fruit = new Fruit("Orange", "Summer fruit");
         given()
-                    .body(fruit)
-                    .header("Content-Type", MediaType.APPLICATION_JSON)
+                .body(fruit)
+                .header("Content-Type", MediaType.APPLICATION_JSON)
                 .when()
-                    .delete("/fruits")
+                .delete("/fruits")
                 .then()
-                    .statusCode(202)
-                    .body("name", equalTo("Orange"));
+                .statusCode(202)
+                .body("name", equalTo("Orange"));
         given()
                 .contentType(ContentType.JSON)
                 .when()
@@ -96,23 +96,24 @@ public class FruitResourceTest {
                         "name", Matchers.contains("Strawberry"),
                         "description", Matchers.contains("Winter fruit"));
     }
+
     @Test
     public void getFruitTest() {
         given()
                 .pathParam("name", "Orange")
                 .when()
-                    .get("/fruits/{name}")
+                .get("/fruits/{name}")
                 .then()
-                    .contentType(ContentType.JSON)
-                    .body("name", equalTo("Orange"));
+                .contentType(ContentType.JSON)
+                .body("name", equalTo("Orange"));
 
         given()
                 .pathParam("name", "Papaya")
                 .when()
-                    .get("/fruits/{name}")
+                .get("/fruits/{name}")
                 .then()
-                    .contentType(ContentType.JSON)
-                    .statusCode(404)
-                    .body(equalTo("The fruit with name Papaya doesn't exist."));
+                .contentType(ContentType.JSON)
+                .statusCode(404)
+                .body(equalTo("The fruit with name Papaya doesn't exist."));
     }
 }

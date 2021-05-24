@@ -17,7 +17,8 @@ public class FruitService {
     FruitRepository repository;
 
     // Empty constructor for the CDI
-    public FruitService() {}
+    public FruitService() {
+    }
 
     public Set<Fruit> getData() {
         return repository.getData();

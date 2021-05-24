@@ -11,7 +11,7 @@ public class Fruit {
     @NotBlank
     public String name;
 
-   @NotEmpty
+    @NotEmpty
     public String description;
 
     // Required constructor by the JSON serialization layer
