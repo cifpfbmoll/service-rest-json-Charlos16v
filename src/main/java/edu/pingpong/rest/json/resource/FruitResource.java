@@ -5,9 +5,11 @@ import edu.pingpong.rest.json.service.FruitService;
 import edu.pingpong.rest.json.domain.Fruit;
 
 import javax.inject.Inject;
+import javax.print.attribute.standard.Media;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.Optional;
 
 @Path("/fruits")
 public class FruitResource {
@@ -38,5 +40,13 @@ public class FruitResource {
     public Response deleteData(Fruit fruit) {
         service.removeFruit(fruit.getName());
         return Response.accepted(fruit).build();
+    }
+
+    @GET
+    @Path("/{fruitname}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getData(@PathParam("fruitname") String fruitname) {
+        Optional<Fruit> fruit = service.getFruit(fruitname);
+        return fruit.isPresent() ? Response.ok(fruit).build() : Response.status(Response.Status.NOT_FOUND).entity("The fruit with name " + fruitname + " doesn't exist.").build();
     }
 }
